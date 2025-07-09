@@ -1,0 +1,7 @@
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRESS_PASOWRD:
+      - POSTGRESS_USER:
+      - POSTGRESS_DB:
