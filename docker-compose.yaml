@@ -10,7 +10,7 @@ services:
     volumes:
       - ./backend/database/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
-      - "5433:5432"
+      - "5432:5432"
     networks:
       - app-network
 
@@ -30,6 +30,13 @@ services:
       - PGPORT=${DB_PORT}
     command: sh -c "npm install && npm start"
 
+  frontend:
+    build: ./frontend/Votaciones
+    image: frontend
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./frontend/Votaciones:/usr/src/app
     networks:
       - app-network
 
