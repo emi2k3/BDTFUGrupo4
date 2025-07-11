@@ -51,7 +51,7 @@ router.post("/", credencialSchema, async (req, res) => {
     try {
       const resultado = await pool.query(
         `
-        INSERT INTO CREDENCIALES(serie,numero) VALUES($1,$2)
+        INSERT INTO credenciales(serie,numero) VALUES($1,$2)
         RETURNING *
         `,
         [serie, numero]
