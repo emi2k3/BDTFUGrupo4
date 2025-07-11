@@ -1,6 +1,7 @@
 services:
   db:
     image: postgres
+    container_name: db
     environment:
       POSTGRES_HOST: ${DB_HOST}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
@@ -16,6 +17,7 @@ services:
 
   api:
     build: ./backend
+    container_name: api
     ports:
       - "3000:3000"
     volumes:
@@ -29,10 +31,13 @@ services:
       - PGHOST=${DB_HOST}
       - PGPORT=${DB_PORT}
     command: sh -c "npm install && npm start"
+    networks:
+      - app-network
 
   frontend:
     build: ./frontend/Votaciones
     image: frontend
+    container_name: frontend
     ports:
       - "4200:4200"
     volumes:
