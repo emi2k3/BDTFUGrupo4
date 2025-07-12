@@ -9,7 +9,7 @@ services:
       POSTGRES_DB: ${DB_DATABASE}
       POSTGRES_PORT: ${DB_PORT}
     volumes:
-      - ./backend/database/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./backend/database/scripts/:/docker-entrypoint-initdb.d/
     ports:
       - "5432:5432"
     networks:
