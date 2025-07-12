@@ -124,10 +124,10 @@ INSERT INTO listas (id_eleccion, id_partido_politico) VALUES
 -- Integrantes de lista
 INSERT INTO integrantes_lista (id_lista, id_candidato) VALUES 
 (1, 1), (1, 2), -- PN: Presidente y Vice
-(2, 3), (2, 4), -- PC: Presidente y Vice
-(3, 5), (3, 6), -- FA: Presidente y Vice
-(4, 7), (4, 8), -- CA: Presidente y Vice
-(5, 9), (5, 10); -- PI: Presidente y Vice
+(2, 5), (2, 6), -- PC: Presidente y Vice
+(3, 9), (3, 10), -- FA: Presidente y Vice
+(4, 12), (4, 13), -- CA: Presidente y Vice
+(5, 14), (5, 15); -- PI: Presidente y Vice
 
 -- =============================================
 -- 5. INFRAESTRUCTURA ELECTORAL
@@ -299,55 +299,42 @@ INSERT INTO constancias_voto (fecha_hora, voto, id_ciudadano, id_eleccion, id_ci
 
 
 INSERT INTO voto_lista (voto_id, lista_id) VALUES 
--- Partido Nacional (8 votos)
-(1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1), (8, 1),
--- Partido Colorado (4 votos)
-(9, 2), (10, 2), (11, 2), (12, 2),
--- Frente Amplio (2 votos)
-(13, 3), (14, 3),
--- Cabildo Abierto (1 voto)
-(15, 4),
--- Voto observado (ID 16) - Partido Independiente
-(16, 5),
+-- Montevideo Centro (circuito 1) - Votos IDs 1-20
+-- Solo los votos válidos (IDs 1-15) van a listas específicas
+-- Distribución sugerida: 8 PN, 4 PC, 2 FA, 1 CA
+(1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1), (8, 1),  -- Partido Nacional
+(9, 2), (10, 2), (11, 2), (12, 2),  -- Partido Colorado
+(13, 3), (14, 3),  -- Frente Amplio
+(15, 4),  -- Cabildo Abierto
+-- Voto observado (ID 16) - asignar a una lista
+(16, 1),  -- Partido Nacional
 
--- Montevideo Pocitos (circuito 2) - 18 votos  
+-- Montevideo Pocitos (circuito 2) - Votos IDs 21-38
 -- Votos válidos (IDs 21-34): 6 FA, 4 PN, 3 PC, 1 PI
--- Frente Amplio (6 votos)
-(21, 3), (22, 3), (23, 3), (24, 3), (25, 3), (26, 3),
--- Partido Nacional (4 votos)
-(27, 1), (28, 1), (29, 1), (30, 1),
--- Partido Colorado (3 votos)
-(31, 2), (32, 2), (33, 2),
--- Partido Independiente (1 voto)
-(34, 5),
+(21, 3), (22, 3), (23, 3), (24, 3), (25, 3), (26, 3),  -- Frente Amplio
+(27, 1), (28, 1), (29, 1), (30, 1),  -- Partido Nacional
+(31, 2), (32, 2), (33, 2),  -- Partido Colorado
+(34, 5),  -- Partido Independiente
+-- Voto observado anulado (ID 36) - si quieres contarlo
+(36, 1),  -- Partido Nacional
 
--- Maldonado (circuito 3) - 15 votos
+-- Maldonado (circuito 3) - Votos IDs 39-53
 -- Votos válidos (IDs 39-49): 5 PN, 3 FA, 2 PC, 1 CA
--- Partido Nacional (5 votos)
-(39, 1), (40, 1), (41, 1), (42, 1), (43, 1),
--- Frente Amplio (3 votos)
-(44, 3), (45, 3), (46, 3),
--- Partido Colorado (2 votos)
-(47, 2), (48, 2),
--- Cabildo Abierto (1 voto)
-(49, 4),
+(39, 1), (40, 1), (41, 1), (42, 1), (43, 1),  -- Partido Nacional
+(44, 3), (45, 3), (46, 3),  -- Frente Amplio
+(47, 2), (48, 2),  -- Partido Colorado
+(49, 4),  -- Cabildo Abierto
 -- Voto observado (ID 50)
-(50, 1),
+(50, 1),  -- Partido Nacional
 
--- Salto (circuito 4) - 12 votos
+-- Salto (circuito 4) - Votos IDs 54-65
 -- Votos válidos (IDs 54-62): 4 PN, 3 FA, 2 PC
--- Partido Nacional (4 votos)
-(54, 1), (55, 1), (56, 1), (57, 1),
--- Frente Amplio (3 votos)
-(58, 3), (59, 3), (60, 3),
--- Partido Colorado (2 votos)
-(61, 2), (62, 2),
+(54, 1), (55, 1), (56, 1), (57, 1),  -- Partido Nacional
+(58, 3), (59, 3), (60, 3),  -- Frente Amplio
+(61, 2), (62, 2),  -- Partido Colorado
 
--- Paysandú (circuito 5) - 10 votos
+-- Paysandú (circuito 5) - Votos IDs 66-75
 -- Votos válidos (IDs 66-72): 3 PN, 2 FA, 2 PC
--- Partido Nacional (3 votos)
-(66, 1), (67, 1), (68, 1),
--- Frente Amplio (2 votos)
-(69, 3), (70, 3),
--- Partido Colorado (2 votos)
-(71, 2), (72, 2);
+(66, 1), (67, 1), (68, 1),  -- Partido Nacional
+(69, 3), (70, 3),  -- Frente Amplio
+(71, 2), (72, 2);  -- Partido Colorado

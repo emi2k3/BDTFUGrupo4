@@ -23,7 +23,9 @@ router.get(
             l.id AS lista_id,
             pp.nombre AS partido_nombre,
             pp.sigla AS partido_sigla,
-            COALESCE(COUNT(CASE WHEN v.estado = 'valido' THEN vl.voto_id END), 0) AS cantidad_votos
+            COALESCE(COUNT(CASE WHEN v.estado = 'valido' THEN vl.voto_id END), 0) AS votos_validos,
+            COALESCE(COUNT(CASE WHEN v.estado = 'anulado' THEN vl.voto_id END), 0) AS votos_anulados,
+            COALESCE(COUNT(CASE WHEN v.estado = 'en blanco' THEN vl.voto_id END), 0) AS votos_en_blanco
         FROM elecciones e
         INNER JOIN listas l ON e.id = l.id_eleccion
         INNER JOIN partidos_politicos pp ON l.id_partido_politico = pp.id
@@ -31,7 +33,7 @@ router.get(
         LEFT JOIN votos v ON vl.voto_id = v.id
         WHERE e.id = $1
         GROUP BY e.id, e.fecha, e.tipo, l.id, pp.nombre, pp.sigla
-        ORDER BY cantidad_votos DESC`,
+        ORDER BY votos_validos DESC`,
         [ideleccion]
       );
 
@@ -109,6 +111,7 @@ router.get(
 );
 
 // Ruta para obtener la cantidad de votos emitidos por candidato en una elección específica
+
 router.get(
   "/candidatos/eleccion/:id",
   [param("id").isInt().withMessage("El ID debe ser un número entero")],
@@ -122,32 +125,37 @@ router.get(
     try {
       const resultado = await pool.query(
         `SELECT 
-            c.id AS candidato_id,
-            TRIM(CONCAT(ci.primer_nombre, ' ', 
-                COALESCE(ci.segundo_nombre || ' ', ''), 
-                ci.primer_apellido, ' ', 
-                COALESCE(ci.segundo_apellido, ''))) AS candidato_nombre,
-            c.organo AS cargo,
-            c.orden AS orden_lista,
-            pp.nombre AS partido_nombre,
-            pp.sigla AS partido_sigla,
-            COALESCE(COUNT(v.id), 0) AS total_votos,
-            COALESCE(COUNT(CASE WHEN v.estado = 'valido' AND v.observado = false THEN 1 END), 0) AS votos_validos,
-            COALESCE(COUNT(CASE WHEN v.estado = 'valido' AND v.observado = true THEN 1 END), 0) AS votos_observados,
-            COALESCE(COUNT(CASE WHEN v.estado = 'anulado' THEN 1 END), 0) AS votos_anulados,
-            COALESCE(COUNT(CASE WHEN v.estado = 'en blanco' THEN 1 END), 0) AS votos_en_blanco
-        FROM elecciones e
-        INNER JOIN listas l ON e.id = l.id_eleccion
-        INNER JOIN partidos_politicos pp ON l.id_partido_politico = pp.id
-        INNER JOIN integrantes_lista il ON l.id = il.id_lista
-        INNER JOIN candidatos c ON il.id_candidato = c.id
-        INNER JOIN ciudadanos ci ON c.id_ciudadano = ci.id
-        LEFT JOIN voto_lista vl ON l.id = vl.lista_id
-        LEFT JOIN votos v ON vl.voto_id = v.id
-        WHERE e.id = $1
-        GROUP BY c.id, ci.primer_nombre, ci.segundo_nombre, ci.primer_apellido, ci.segundo_apellido, 
-            c.organo, c.orden, pp.nombre, pp.sigla
-        ORDER BY pp.nombre, c.orden`,
+          c.id AS candidato_id,
+          CONCAT(ci.primer_nombre, ' ', ci.primer_apellido) AS nombre_candidato,
+          pp.nombre AS partido_politico,
+          c.organo,
+          c.orden,
+          COALESCE(COUNT(CASE WHEN v.estado = 'valido' AND v.observado = FALSE THEN 1 END), 0) AS votos_validos,
+          COALESCE(COUNT(CASE WHEN v.observado = TRUE THEN 1 END), 0) AS votos_observados,
+          COALESCE(COUNT(CASE WHEN v.estado = 'anulado' THEN 1 END), 0) AS votos_anulados,
+          COALESCE(COUNT(v.id), 0) AS total_votos
+        FROM candidatos c
+          INNER JOIN ciudadanos ci ON c.id_ciudadano = ci.id
+          INNER JOIN partidos_politicos pp ON c.id_partido_politico = pp.id
+          LEFT JOIN integrantes_lista il ON c.id = il.id_candidato
+          LEFT JOIN listas l ON il.id_lista = l.id AND l.id_eleccion = $1
+          LEFT JOIN voto_lista vl ON l.id = vl.lista_id
+          LEFT JOIN votos v ON vl.voto_id = v.id AND v.id_eleccion = $1
+        WHERE 
+          c.orden = 1  -- Solo candidatos principales (orden 1)
+        GROUP BY 
+          c.id, 
+          ci.primer_nombre, 
+          ci.primer_apellido, 
+          pp.nombre,
+          c.organo,
+          c.orden
+        HAVING 
+          COUNT(l.id) > 0  -- Solo incluir candidatos que participan en esta elección
+        ORDER BY 
+          pp.nombre,
+          c.organo,
+          c.orden`,
         [idEleccion]
       );
 
