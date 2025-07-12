@@ -9,6 +9,9 @@ const zonaRoutes = require("./zona.routes");
 const localidadRoutes = require("./localidad.routes");
 const departamentoRoutes = require("./departamento.routes");
 const direccionRoutes = require("./direccion.routes");
+const mesaRoutes = require("./mesa.routes");
+const circuitoRoutes = require("./circuito.routes");
+const establecimientoRoutes = require("./establecimiento.routes");
 
 // Prefijos Asi se ponen las rutas
 
@@ -21,5 +24,8 @@ router.use("/zona", zonaRoutes);
 router.use("/localidad", localidadRoutes);
 router.use("/departamento", departamentoRoutes);
 router.use("/direccion", direccionRoutes);
+router.use("/mesa", mesaRoutes);
+router.use("/circuito", circuitoRoutes);
+router.use("/establecimiento", establecimientoRoutes);
 
 module.exports = router;
