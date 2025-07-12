@@ -12,6 +12,10 @@ const direccionRoutes = require("./direccion.routes");
 const mesaRoutes = require("./mesa.routes");
 const circuitoRoutes = require("./circuito.routes");
 const establecimientoRoutes = require("./establecimiento.routes");
+const candidatoRoutes = require("./candidato.routes");
+const empleadoRoutes = require("./empleado_publico.routes");
+const comisariaRoutes = require("./comisaria.routes");
+const anulacionRoutes = require("./tipo_anulacion.routes");
 
 // Prefijos Asi se ponen las rutas
 
@@ -27,5 +31,8 @@ router.use("/direccion", direccionRoutes);
 router.use("/mesa", mesaRoutes);
 router.use("/circuito", circuitoRoutes);
 router.use("/establecimiento", establecimientoRoutes);
+router.use("/candidato", candidatoRoutes);
+router.use("/empleado", empleadoRoutes);
+router.use("/anulacion", anulacionRoutes);
 
 module.exports = router;
