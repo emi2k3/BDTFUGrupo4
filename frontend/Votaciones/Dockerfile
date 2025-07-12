@@ -1,14 +1,16 @@
-ARG NODE_VERSION=22.14.0-alpine
+ARG NODE_VERSION=22.14.0
 
 FROM node:${NODE_VERSION} AS dev
 
 ENV NODE_ENV=development
 
-WORKDIR /app
+WORKDIR /Votaciones
 
-COPY package.json package-lock.json ./
+RUN npm install -g @angular/cli
 
-RUN --mount=type=cache,target=/root/.npm npm ci
+COPY package*.json ./
+
+RUN npm install
 
 COPY . .
 
