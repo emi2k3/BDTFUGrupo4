@@ -13,7 +13,8 @@ CREATE TABLE "ciudadanos" (
 CREATE TABLE "credenciales" (
   "id" serial PRIMARY KEY,
   "serie" varchar(3),
-  "numero" int
+  "numero" int,
+  UNIQUE ("serie", "numero")
 );
 
 CREATE TABLE "lista_credenciales" (
