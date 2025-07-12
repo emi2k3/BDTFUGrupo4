@@ -41,7 +41,8 @@ services:
     ports:
       - "4200:4200"
     volumes:
-      - ./frontend/Votaciones:/usr/src/app
+      - ./frontend/Votaciones:/Votaciones
+      - /Votaciones/node_modules
     networks:
       - app-network
 
