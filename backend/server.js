@@ -25,3 +25,13 @@ const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+app._router.stack
+  .filter((r) => r.route)
+  .forEach((r) => {
+    console.log(
+      `➡️ Ruta: ${Object.keys(r.route.methods).join(", ").toUpperCase()} ${
+        r.route.path
+      }`
+    );
+  });
