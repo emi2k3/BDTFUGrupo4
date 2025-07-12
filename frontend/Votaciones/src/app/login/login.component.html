@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="login.component.css" />
+  </head>
+  <body>
+    <div class="full-screen-container">
+      <div class="login-container">
+        <h1 class="login-title">Bienvenido</h1>
+        <form class="form">
+          <div class="input-group">
+            <label for="">Credencial:</label>
+            <input
+              type="text"
+              placeholder="ABC 123"
+              name="credencialInput"
+              id="credencialInput"
+              [(ngModel)]="this.credencial"
+            />
+            <span></span>
+            <label for="">Cedula:</label>
+            <input
+              type="text"
+              placeholder="1234567"
+              name="cedulaInput"
+              id="cedulaInput"
+              [(ngModel)]="this.cedula"
+            />
+          </div>
+          <button class="loginButton" id="loginButton">Iniciar sesión</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
