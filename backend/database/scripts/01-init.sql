@@ -52,7 +52,8 @@ CREATE TABLE "votos" (
   "observado" boolean,
   "fecha_hora" timestamp,
   "id_circuito" int,
-  "id_tipo_anulacion" int
+  "id_tipo_anulacion" int,
+  "id_eleccion" int
 );
 
 CREATE TABLE "tipo_anulacion" (
@@ -189,6 +190,8 @@ ALTER TABLE "empleados_publicos" ADD FOREIGN KEY ("id_mesa") REFERENCES "mesas" 
 ALTER TABLE "votos" ADD FOREIGN KEY ("id_tipo_anulacion") REFERENCES "tipo_anulacion" ("id");
 
 ALTER TABLE "votos" ADD FOREIGN KEY ("id_circuito") REFERENCES "circuitos" ("id");
+
+ALTER TABLE "votos" ADD FOREIGN KEY ("id_eleccion") REFERENCES "elecciones" ("id");
 
 ALTER TABLE "constancias_voto" ADD FOREIGN KEY ("id_ciudadano") REFERENCES "ciudadanos" ("id");
 

@@ -16,8 +16,11 @@ const candidatoRoutes = require("./candidato.routes");
 const empleadoRoutes = require("./empleado_publico.routes");
 const comisariaRoutes = require("./comisaria.routes");
 const anulacionRoutes = require("./tipo_anulacion.routes");
+const authRoutes = require("./auth.routes");
+const votosRoutes = require("./votos/votos.routes");
+const resultadosRoutes = require("./resultados/resultados.routes");
 
-// Prefijos Asi se ponen las rutas
+
 
 router.use("/credencial", credencialRoutes);
 router.use("/ciudadano", ciudadanoRoutes);
@@ -34,5 +37,8 @@ router.use("/establecimiento", establecimientoRoutes);
 router.use("/candidato", candidatoRoutes);
 router.use("/empleado", empleadoRoutes);
 router.use("/anulacion", anulacionRoutes);
+router.use("/auth", authRoutes);
+router.use("/votos", votosRoutes);
+router.use("/resultados", resultadosRoutes);
 
 module.exports = router;
