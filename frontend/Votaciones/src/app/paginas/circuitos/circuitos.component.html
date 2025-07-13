@@ -19,7 +19,9 @@
       <p class="card-description">Estado:Abierta</p>
       }
       <div class="card-actions">
-        <a class="action-link" (click)="onClick()">Votar</a>
+        <a class="action-link" [routerLink]="['/listas/votar/', circuito.id]"
+          >Votar</a
+        >
       </div>
     </div>
     } @empty {

@@ -38,6 +38,12 @@ export class FetchService {
         return data;
       } else if (response.status == 401) {
         throw new Error('Usuario no verificado.');
+      } else if (response.status == 400) {
+        const errorMessage =
+          typeof data === 'object' && (data.message || data.error)
+            ? data.message || data.error
+            : data || 'Error en la solicitud (400).';
+        throw new Error(errorMessage);
       } else {
         throw new Error(data);
       }

@@ -20,7 +20,7 @@ export const routes: Routes = [
     title: 'Circuitos',
   },
   {
-    path: 'listas/votar',
+    path: 'listas/votar/:id',
     component: VotarCandidatosComponent,
     title: 'Listas',
   },
