@@ -15,13 +15,11 @@ export class Login {
   private authService = inject(AuthService);
   async onSubmit() {
     const splitedCredencial = this.credencial.split(' ');
-    console.log(splitedCredencial[0], splitedCredencial[1]);
     this.loginUser = {
       serie: splitedCredencial[0],
       numero: splitedCredencial[1],
       ci: this.cedula,
     };
-    console.log(this.loginUser);
     await this.authService.login(JSON.stringify(this.loginUser));
   }
 }

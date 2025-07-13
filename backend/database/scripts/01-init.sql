@@ -52,7 +52,8 @@ CREATE TABLE "votos" (
   "observado" boolean,
   "fecha_hora" timestamp,
   "id_circuito" int,
-  "id_tipo_anulacion" int
+  "id_tipo_anulacion" int,
+  "id_eleccion" int
 );
 
 CREATE TABLE "tipo_anulacion" (
@@ -190,6 +191,8 @@ ALTER TABLE "votos" ADD FOREIGN KEY ("id_tipo_anulacion") REFERENCES "tipo_anula
 
 ALTER TABLE "votos" ADD FOREIGN KEY ("id_circuito") REFERENCES "circuitos" ("id");
 
+ALTER TABLE "votos" ADD FOREIGN KEY ("id_eleccion") REFERENCES "elecciones" ("id");
+
 ALTER TABLE "constancias_voto" ADD FOREIGN KEY ("id_ciudadano") REFERENCES "ciudadanos" ("id");
 
 ALTER TABLE "voto_lista" ADD FOREIGN KEY ("voto_id") REFERENCES "votos" ("id");
@@ -243,6 +246,3 @@ ALTER TABLE "partidos_politicos" ADD FOREIGN KEY ("id_presidente") REFERENCES "c
 ALTER TABLE "partidos_politicos" ADD FOREIGN KEY ("id_vicepresidente") REFERENCES "ciudadanos" ("id");
 
 ALTER TABLE "partidos_politicos" ADD FOREIGN KEY ("id_direccion") REFERENCES "direcciones" ("id");
-
-INSERT INTO credenciales(serie,numero) VALUES('ABC',123);
-INSERT INTO ciudadanos(ci,primer_nombre,segundo_nombre,primer_apellido,segundo_apellido,mayor_edad,id_credencial) VALUES('1234567','Juan','Carlo','Fabara','Rastellino',true,1);
