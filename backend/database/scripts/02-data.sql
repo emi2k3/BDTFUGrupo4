@@ -48,7 +48,8 @@ INSERT INTO direcciones (calle, numero, id_departamento, id_localidad, id_zona) 
 INSERT INTO credenciales (serie, numero) VALUES 
 ('AAA', 123456), ('AAB', 234567), ('AAC', 345678), ('AAD', 456789), ('AAE', 567890),
 ('ABA', 123456), ('ABB', 234567), ('ABC', 345678), ('ABD', 456789), ('ABE', 567890),
-('ACA', 123456), ('ACB', 234567), ('ACC', 345678), ('ACD', 456789), ('ACE', 567890);
+('ACA', 123456), ('ACB', 234567), ('ACC', 345678), ('ACD', 456789), ('ACE', 567890),
+('ADA', 1234), ('ADB', 2345), ('ADC', 3456), ('ADD', 4567), ('ADE', 5678);
 
 -- Ciudadanos
 INSERT INTO ciudadanos (ci, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, mayor_edad, id_credencial) VALUES 
@@ -68,7 +69,12 @@ INSERT INTO ciudadanos (ci, primer_nombre, segundo_nombre, primer_apellido, segu
 (21234567, 'Diego', 'Martín', 'Suárez', 'Olivera', true, 12),
 (31234567, 'Gabriela', 'Inés', 'Vargas', 'Pereira', true, 13),
 (41234567, 'Rodrigo', 'Alejandro', 'Cabrera', 'Sosa', true, 14),
-(51234567, 'Natalia', 'Sofía', 'Acosta', 'Núñez', true, 15);
+(51234567, 'Natalia', 'Sofía', 'Acosta', 'Núñez', true, 15),
+(61234567, 'Fernando', 'Eduardo', 'Gómez', 'Cano', true, 16),
+(71234567, 'Verónica', 'Elisa', 'Ríos', 'Paz', true, 17),
+(81234567, 'Héctor', 'Raúl', 'López', 'Cruz', true, 18),
+(91234567, 'Claudia', 'María', 'Moreno', 'Salazar', true, 19),
+(10234567, 'Sergio', 'Javier', 'Castillo', 'Moraes', true, 20);
 
 -- =============================================
 -- 3. PARTIDOS POLÍTICOS
@@ -143,11 +149,11 @@ INSERT INTO establecimientos (nombre, tipo, id_direccion) VALUES
 
 -- Mesas
 INSERT INTO mesas (numero_identificacion, fecha_apertura, fecha_cierre, abierta) VALUES 
-('MESA001', '2024-10-27 08:00:00', '2024-10-27 19:00:00', false),
-('MESA002', '2024-10-27 08:00:00', '2024-10-27 19:00:00', false),
-('MESA003', '2024-10-27 08:00:00', '2024-10-27 19:00:00', false),
-('MESA004', '2024-10-27 08:00:00', '2024-10-27 19:00:00', false),
-('MESA005', '2024-10-27 08:00:00', '2024-10-27 19:00:00', false);
+('MESA001', '2024-10-27 08:00:00', '2024-10-27 19:00:00', true),
+('MESA002', '2024-10-27 08:00:00', '2024-10-27 19:00:00', true),
+('MESA003', '2024-10-27 08:00:00', '2024-10-27 19:00:00', true),
+('MESA004', '2024-10-27 08:00:00', '2024-10-27 19:00:00', true),
+('MESA005', '2024-10-27 08:00:00', '2024-10-27 19:00:00', true);
 
 -- Circuitos
 INSERT INTO circuitos (accesible, numero, id_establecimiento, id_mesa) VALUES 
@@ -163,7 +169,8 @@ INSERT INTO lista_credenciales (id_credencial, id_circuito) VALUES
 (4, 2), (5, 2), (6, 2),
 (7, 3), (8, 3), (9, 3),
 (10, 4), (11, 4), (12, 4),
-(13, 5), (14, 5), (15, 5);
+(13, 5), (14, 5), (15, 5),
+(16, 1), (17, 2), (18, 3), (19, 4), (20, 5);
 
 -- =============================================
 -- 6. TIPOS DE ANULACIÓN
