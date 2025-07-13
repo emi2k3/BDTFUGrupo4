@@ -243,3 +243,6 @@ ALTER TABLE "partidos_politicos" ADD FOREIGN KEY ("id_presidente") REFERENCES "c
 ALTER TABLE "partidos_politicos" ADD FOREIGN KEY ("id_vicepresidente") REFERENCES "ciudadanos" ("id");
 
 ALTER TABLE "partidos_politicos" ADD FOREIGN KEY ("id_direccion") REFERENCES "direcciones" ("id");
+
+INSERT INTO credenciales(serie,numero) VALUES('ABC',123);
+INSERT INTO ciudadanos(ci,primer_nombre,segundo_nombre,primer_apellido,segundo_apellido,mayor_edad,id_credencial) VALUES('1234567','Juan','Carlo','Fabara','Rastellino',true,1);

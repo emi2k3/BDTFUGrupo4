@@ -30,7 +30,9 @@
               [(ngModel)]="this.cedula"
             />
           </div>
-          <button class="loginButton" id="loginButton">Iniciar sesión</button>
+          <button class="loginButton" id="loginButton" (click)="onSubmit()">
+            Iniciar sesión
+          </button>
         </form>
       </div>
     </div>

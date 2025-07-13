@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class FetchService {
-  readonly baseurl = 'http://localhost/';
+  readonly baseurl = 'http://localhost:3000/';
 
   private getHeaders(method: string): HeadersInit {
     const headers: HeadersInit = {};
