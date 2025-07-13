@@ -1,0 +1,31 @@
+<div class="background">
+  <h1>Circuitos</h1>
+  <div class="cards-container">
+    @for (circuito of Circuitos; track circuito.id) {
+    <div class="card">
+      <div class="card-title">Circuito N{{ circuito.numero }}</div>
+      @if(!circuito.accesible){
+      <p class="card-description">Accesible:❌</p>
+      }@else{
+      <p class="card-description">Accesible:♿</p>
+      }
+      <p class="card-description">
+        Establecimiento:{{ circuito.nombre_establecimiento }}
+      </p>
+      <p class="card-description">Mesa:{{ circuito.numero_mesa }}</p>
+      @if(!circuito.estado_mesa){
+      <p class="card-description">Estado:Cerrada</p>
+      }@else{
+      <p class="card-description">Estado:Abierta</p>
+      }
+      <div class="card-actions">
+        <a href="#" class="action-link">Votar</a>
+      </div>
+    </div>
+    } @empty {
+    <div class="card">
+      <div class="card-title">No hay circuitos disponibles</div>
+    </div>
+    }
+  </div>
+</div>

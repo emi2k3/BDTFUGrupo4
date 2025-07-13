@@ -1,0 +1,28 @@
+<div class="background">
+  <h1>Listas</h1>
+  <div class="cards-container">
+    @for (lista of Listas; track lista.id) {
+    <div class="card">
+      <div class="card-title">
+        {{ lista.nombre_partido }}(<b>{{ lista.sigla_partido }}</b
+        >)
+      </div>
+
+      <p class="card-description">
+        Presidente:{{ lista.presidente_nombre_completo }}
+      </p>
+      <p class="card-description">
+        Vice-Presidente:{{ lista.vicepresidente_nombre_completo }}
+      </p>
+
+      <div class="card-actions">
+        <a class="action-link" (click)="onClick()">Votar</a>
+      </div>
+    </div>
+    } @empty {
+    <div class="card">
+      <div class="card-title">No hay listas disponibles</div>
+    </div>
+    }
+  </div>
+</div>

@@ -29,7 +29,19 @@ router.post("/", circuitoSchema, async (req, res) => {
 
 router.get("/", async (_req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM circuitos;");
+    const result = await pool.query(`SELECT 
+      c.id,
+      c.accesible,
+      c.numero,
+      m.numero_identificacion AS numero_mesa,
+      m.abierta AS estado_mesa,
+      e.nombre AS nombre_establecimiento
+FROM 
+    circuitos c
+JOIN 
+    mesas m ON c.id_mesa = m.id
+JOIN 
+    establecimientos e ON c.id_establecimiento = e.id;`);
     res.json(result.rows);
   } catch (error) {
     res.status(500).json({ message: error.message });

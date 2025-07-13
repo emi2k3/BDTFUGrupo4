@@ -31,7 +31,28 @@ router.post("/", listaSchema, async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM listas;");
+    const result = await pool.query(`
+      SELECT 
+    pp.id AS partido_id,
+    pp.nombre AS nombre_partido,
+    pp.sigla AS sigla_partido,
+    
+    TRIM(cp.primer_nombre || ' ' || 
+         COALESCE(cp.segundo_nombre, '') || ' ' ||
+         cp.primer_apellido || ' ' || 
+         COALESCE(cp.segundo_apellido, '')) AS presidente_nombre_completo,
+    
+    TRIM(cv.primer_nombre || ' ' || 
+         COALESCE(cv.segundo_nombre, '') || ' ' ||
+         cv.primer_apellido || ' ' || 
+         COALESCE(cv.segundo_apellido, '')) AS vicepresidente_nombre_completo
+
+   
+
+FROM partidos_politicos pp
+LEFT JOIN ciudadanos cp ON pp.id_presidente = cp.id
+LEFT JOIN ciudadanos cv ON pp.id_vicepresidente = cv.id
+ORDER BY pp.nombre;`);
     res.json(result.rows);
   } catch (error) {
     res.status(500).json({ message: error.message });
