@@ -7,6 +7,7 @@ CREATE TABLE "ciudadanos" (
   "segundo_apellido" varchar(20),
   "mayor_edad" boolean,
   "id_credencial" int,
+  "id_direccion" int,
   PRIMARY KEY ("id")
 );
 
@@ -182,6 +183,8 @@ ALTER TABLE "empleados_publicos" ADD FOREIGN KEY ("id_ciudadano") REFERENCES "ci
 ALTER TABLE "policias" ADD FOREIGN KEY ("id_ciudadano") REFERENCES "ciudadanos" ("id");
 
 ALTER TABLE "candidatos" ADD FOREIGN KEY ("id_ciudadano") REFERENCES "ciudadanos" ("id");
+
+ALTER TABLE "ciudadanos" ADD FOREIGN KEY ("id_direccion") REFERENCES "direcciones" ("id");
 
 ALTER TABLE "ciudadanos" ADD FOREIGN KEY ("id_credencial") REFERENCES "credenciales" ("id");
 

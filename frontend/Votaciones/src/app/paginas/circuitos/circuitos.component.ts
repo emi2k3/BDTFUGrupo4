@@ -1,10 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CircuitoService } from '../../services/circuito/circuito.service';
+import { RouterLink } from '@angular/router';
+
 @Component({
   selector: 'app-circuitos',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './circuitos.component.html',
   styleUrl: './circuitos.component.css',
 })

@@ -16,7 +16,11 @@
       </p>
 
       <div class="card-actions">
-        <a class="action-link" (click)="onClick()">Votar</a>
+        <a
+          class="action-link"
+          (click)="onClick(lista.id_eleccion, lista.id_lista)"
+          >Votar</a
+        >
       </div>
     </div>
     } @empty {
